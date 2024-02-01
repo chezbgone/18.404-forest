@@ -1,0 +1,51 @@
+\title{finite automata}
+
+\p{
+  \strong{Intuition.}
+  We're going to start with a discussion of computability,
+  in which we need models of computation.
+
+  Let's start with an object #{M_1} that is represented by
+  the following diagram:
+}
+\xml{center}{
+  \tex{
+    \usepackage{tikz}
+    \usetikzlibrary{automata, decorations.pathmorphing}
+    \usetikzlibrary{calc, cd, math, matrix, positioning}
+    \tikzset{automaton/.style={->, shorten >=1pt, node distance=1.5cm,
+                               on grid, auto, double distance=2pt,
+                               every state/.style={minimum size=1.5em,
+                               inner sep=1pt}}}
+  }{
+    \begin{tikzpicture}[automaton, node distance=1.7cm]
+      \node[state, initial]   (s_1) {$q_1$};
+      \node[state]            (s_2) [right=of s_1] {$q_2$};
+      \node[state, accepting] (s_3) [right=of s_2] {$q_3$};
+
+      \path (s_1) edge [loop above] node {$\texttt 0$} (s_1);
+      \path (s_1) edge [bend left]  node {$\texttt 1$} (s_2);
+      \path (s_2) edge [bend left]  node {$\texttt 0$} (s_1);
+      \path (s_2) edge []           node {$\texttt 1$} (s_3);
+      \path (s_3) edge [loop right] node {$\texttt 0, \texttt 1$} (s_3);
+    \end{tikzpicture}
+  }
+}
+
+\p{
+  We have the states #{q_1}, #{q_2}, and #{q_3},
+  transitions represented by the arrows and their labels,
+  the start label labeled with an incoming arrow,
+  and the accepting state with a double outline.
+}
+
+\p{
+  The inputs are strings, and to determine whether a string is
+  accepted or rejected, we begin at the start input,
+  and follow arrows corresponding to each character until
+  we reach the end of the string.
+  If the ending state is an accepting state, we say that the input is accepted,
+  and otherwise the input is rejected.
+}
+
+\transclude{toc-0001}

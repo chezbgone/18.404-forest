@@ -1,0 +1,5 @@
+\taxon{example}
+
+\p{
+  In #{M_1}, \code{0101} is rejected and \code{01101} is accepted.
+}
